@@ -1,36 +1,123 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Хади Строй - Строителна компания
 
-## Getting Started
+Модерен уебсайт за строителна компания, изграден с Next.js и TypeScript.
 
-First, run the development server:
+## Функционалности
 
+- 🏠 Модерен и отзивчив дизайн
+- 🌐 Поддръжка на български език
+- 📱 Оптимизиран за мобилни устройства
+- ⚡️ Бързо зареждане
+- 📧 Контактна форма
+- 🗺️ Google Maps интеграция
+- 📸 Галерия с проекти
+
+## Технологии
+
+- Next.js 14
+- TypeScript
+- Tailwind CSS
+- React
+- ESLint
+
+## Предварителни изисквания
+
+- Node.js 18.0.0 или по-нова версия
+- npm или yarn
+
+## Инсталация
+
+1. Клонирайте репозиторито:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/hadi-stroi.git
+cd hadi-stroi
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Инсталирайте зависимостите:
+```bash
+npm install
+# или
+yarn install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Стартирайте development сървъра:
+```bash
+npm run dev
+# или
+yarn dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Отворете [http://localhost:3000](http://localhost:3000) във вашия браузър.
 
-## Learn More
+## Деployment
 
-To learn more about Next.js, take a look at the following resources:
+### GitHub Pages
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Създайте нов репозиторий в GitHub.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. Конфигурирайте `next.config.js`:
+```javascript
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'export',
+  images: {
+    unoptimized: true,
+  },
+  basePath: '/hadi-stroi', // Ако използвате GitHub Pages с custom domain, премахнете този ред
+}
 
-## Deploy on Vercel
+module.exports = nextConfig
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Създайте GitHub Actions workflow файл (`.github/workflows/deploy.yml`):
+```yaml
+name: Deploy to GitHub Pages
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          folder: out
+          branch: gh-pages
+```
+
+4. Push към GitHub:
+```bash
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/yourusername/hadi-stroi.git
+git push -u origin main
+```
+
+5. В GitHub репозиторито, отидете на Settings > Pages и изберете `gh-pages` branch като source.
+
+## Конфигурация
+
+- За да промените контактната информация, редактирайте `src/app/contact/page.tsx`
+- За да добавите нови проекти, редактирайте `src/app/projects/page.tsx`
+- За да промените услугите, редактирайте `src/app/services/page.tsx`
+
+## Лиценз
+
+MIT
