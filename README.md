@@ -29,7 +29,7 @@
 
 1. Клонирайте репозиторито:
 ```bash
-git clone https://github.com/yourusername/hadi-stroi.git
+git clone https://github.com/hsynrsd/hadi-stroi.git
 cd hadi-stroi
 ```
 
